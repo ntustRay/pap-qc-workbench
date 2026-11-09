@@ -1,0 +1,49 @@
+name: Validate and deploy PAP QC
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Check JavaScript and run domain tests
+        run: node scripts/check.mjs
+      - name: Generate standalone offline edition
+        run: node scripts/bundle.mjs
+      - name: Include offline edition in static website
+        run: node -e "require('node:fs').copyFileSync('artifacts/pap-qc-offline.html','dist/offline.html')"
+      - name: Upload static Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: validate-and-package
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy static website
+        id: deployment
+        uses: actions/deploy-pages@v4

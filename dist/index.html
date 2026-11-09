@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PAP 子宮頸抹片品質管制：Excel、CSV 匯入，PAS 與 PATH 本機比對、五頁統計報告、個案清冊與中文規則編輯。">
+  <meta name="theme-color" content="#173e43">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; script-src 'self' blob:; style-src 'self'; img-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>PAP 品管工作台</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="工作台導覽">
+      <a class="brand" href="#import"><svg width="34" height="38" viewBox="0 0 34 38" fill="none" aria-hidden="true"><path d="M13 4h7v13h-7zM9 17h15M17 17v5a7 7 0 0 1-7 7M6 32h24M26 8a14 14 0 0 1 2 22M12 4V1h9v3" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="9" r="2" fill="currentColor"/></svg><span>PAP<span class="brand-sub">品管工作台</span></span></a>
+      <p class="sidebar-label">比對工作</p>
+      <nav id="main-nav">
+        <a href="#import" data-view="import"><span class="nav-icon" data-icon="upload"></span>建立比對</a>
+        <a href="#results" data-view="results"><span class="nav-icon" data-icon="grid"></span>比對結果<span id="result-count" class="nav-count" hidden></span></a>
+        <a href="#report" data-view="report"><span class="nav-icon" data-icon="report"></span>完整報告</a>
+        <a href="#registry" data-view="registry"><span class="nav-icon" data-icon="list"></span>個案清冊</a>
+      </nav>
+      <p class="sidebar-label second-label">工作管理</p>
+      <nav>
+        <a href="#rules" data-view="rules"><span class="nav-icon" data-icon="sliders"></span>專業規則<span class="nav-dot" aria-hidden="true"></span></a>
+        <a href="#history" data-view="history"><span class="nav-icon" data-icon="clock"></span>工作紀錄</a>
+        <a href="#help" data-view="help"><span class="nav-icon" data-icon="help"></span>操作說明</a>
+      </nav>
+      <div class="sidebar-bottom"><span class="local-indicator"></span><div>資料留在此裝置<small>靜態網頁・本機運算</small></div><span data-icon="shield"></span></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><span class="breadcrumb">品質管制<span>/</span><strong id="current-view">建立比對</strong></span><div class="top-actions"><span class="local-pill"><span></span>本機模式</span><button id="privacy-toggle" class="icon-button" type="button" aria-label="顯示個案姓名與完整識別碼" title="切換個案去識別顯示" aria-pressed="true" data-icon="eye"></button></div></header>
+      <main id="main" tabindex="-1"><div class="loading-state">正在載入工作台…</div></main>
+      <footer class="app-footer"><span>PAP 品管工作台</span><span>規則與結果皆可追溯<span class="footer-dot">·</span><span id="footer-version">載入中</span></span></footer>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <div id="modal-host"></div>
+  <noscript>本工具需要 JavaScript 才能在本機讀取檔案與計算。</noscript>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

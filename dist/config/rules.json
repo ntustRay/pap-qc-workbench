@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "profile": {
+    "name": "PAP 抹切比對示範規則",
+    "version": "2026.11.09-draft.2",
+    "status": "draft",
+    "reviewer": "",
+    "reviewDate": "",
+    "notes": "抹片代碼參考衛福部 Health-54 譯碼。切片分類、比對矩陣、統計定義及追蹤期限為可修改的示範設定，須經單位專業人員覆核；不是官方認證報表。"
+  },
+  "sources": [
+    {
+      "title": "衛福部 Health-54 子宮頸抹片篩檢檔（2026-07-28）",
+      "url": "https://www.mohw.gov.tw/dl-95586-62183e9f-1f49-45ea-a447-7b88b2c0237b.html",
+      "scope": "SMEAR_DX 01–18 與 S_QUALITY 1–3 的代碼參考"
+    }
+  ],
+  "matching": {
+    "windowMonths": 6,
+    "includeSameDay": true,
+    "selection": "earliest",
+    "dateField": "sampleDate",
+    "sites": [
+      "CERVIX",
+      "CX",
+      "子宮頸",
+      "子宫颈",
+      "C53",
+      "C53.0",
+      "C53.1",
+      "C53.9"
+    ]
+  },
+  "columns": {
+    "pas": {
+      "personId": [
+        "person_id",
+        "ID",
+        "idno",
+        "身分證字號",
+        "身份證字號",
+        "病歷號",
+        "識別碼"
+      ],
+      "name": [
+        "name",
+        "姓名",
+        "個案姓名"
+      ],
+      "sampleId": [
+        "sample_id",
+        "CYTOPATHO_NO",
+        "抹片編號",
+        "細胞病理編號",
+        "pasno"
+      ],
+      "sampleDate": [
+        "sample_date",
+        "SAMP_DATE",
+        "smear_date",
+        "smdate",
+        "採檢日期",
+        "抹片日期"
+      ],
+      "diagnosis": [
+        "diagnosis",
+        "SMEAR_DX",
+        "pap_result",
+        "細胞病理診斷",
+        "抹片診斷",
+        "診斷代碼"
+      ],
+      "quality": [
+        "quality",
+        "S_QUALITY",
+        "抹片品質"
+      ],
+      "reviewer": [
+        "reviewer",
+        "閱片人員",
+        "判讀人員"
+      ]
+    },
+    "path": {
+      "personId": [
+        "person_id",
+        "ID",
+        "idno",
+        "身分證字號",
+        "身份證字號",
+        "病歷號",
+        "識別碼"
+      ],
+      "name": [
+        "name",
+        "姓名",
+        "個案姓名"
+      ],
+      "sampleId": [
+        "sample_id",
+        "pathno",
+        "病理編號",
+        "切片編號"
+      ],
+      "sampleDate": [
+        "sample_date",
+        "slicedate",
+        "採檢日期",
+        "切片日期"
+      ],
+      "reportDate": [
+        "report_date",
+        "pathdate",
+        "報告日期"
+      ],
+      "diagnosis": [
+        "diagnosis",
+        "PATH_DX",
+        "path_dx",
+        "切片診斷",
+        "組織診斷",
+        "診斷代碼"
+      ],
+      "site": [
+        "site",
+        "部位",
+        "採檢部位",
+        "切片部位"
+      ]
+    }
+  },
+  "smearGroups": [
+    {
+      "id": "NILM",
+      "label": "NILM 正常／良性變化",
+      "codes": [
+        "01",
+        "02",
+        "03",
+        "NILM"
+      ],
+      "abnormal": false,
+      "sil": false
+    },
+    {
+      "id": "ASC-US",
+      "label": "ASC-US",
+      "codes": [
+        "04",
+        "ASC-US",
+        "ASCUS"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "ASC-H",
+      "label": "ASC-H",
+      "codes": [
+        "16",
+        "ASC-H",
+        "ASCH"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "LSIL",
+      "label": "LSIL",
+      "codes": [
+        "06",
+        "07",
+        "LSIL"
+      ],
+      "abnormal": true,
+      "sil": true
+    },
+    {
+      "id": "HSIL",
+      "label": "HSIL",
+      "codes": [
+        "08",
+        "09",
+        "10",
+        "HSIL"
+      ],
+      "abnormal": true,
+      "sil": true
+    },
+    {
+      "id": "AGC",
+      "label": "AGC / AGUS",
+      "codes": [
+        "05",
+        "15",
+        "AGC",
+        "AGUS"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "AIS",
+      "label": "AIS",
+      "codes": [
+        "18",
+        "AIS"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "SCC",
+      "label": "Squamous cell carcinoma",
+      "codes": [
+        "11",
+        "SCC"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "ADENO",
+      "label": "Adenocarcinoma",
+      "codes": [
+        "12",
+        "ADENOCARCINOMA"
+      ],
+      "abnormal": true,
+      "sil": false
+    },
+    {
+      "id": "OTHER",
+      "label": "其他異常（13／17）",
+      "codes": [
+        "13",
+        "17"
+      ],
+      "abnormal": true,
+      "sil": false
+    }
+  ],
+  "tissueGroups": [
+    {
+      "id": "BENIGN",
+      "label": "正常／良性",
+      "codes": [
+        "BENIGN",
+        "NEGATIVE",
+        "NORMAL",
+        "正常",
+        "良性"
+      ],
+      "priority": 0
+    },
+    {
+      "id": "CIN1",
+      "label": "CIN 1",
+      "codes": [
+        "CIN1",
+        "CIN 1",
+        "LSIL"
+      ],
+      "priority": 1
+    },
+    {
+      "id": "CIN2",
+      "label": "CIN 2",
+      "codes": [
+        "CIN2",
+        "CIN 2"
+      ],
+      "priority": 2
+    },
+    {
+      "id": "CIN3",
+      "label": "CIN 3",
+      "codes": [
+        "CIN3",
+        "CIN 3"
+      ],
+      "priority": 3
+    },
+    {
+      "id": "AIS",
+      "label": "AIS",
+      "codes": [
+        "AIS"
+      ],
+      "priority": 4
+    },
+    {
+      "id": "SCC",
+      "label": "Squamous cell carcinoma",
+      "codes": [
+        "SCC"
+      ],
+      "priority": 5
+    },
+    {
+      "id": "ADENO",
+      "label": "Adenocarcinoma",
+      "codes": [
+        "ADENOCARCINOMA",
+        "ADENO"
+      ],
+      "priority": 5
+    },
+    {
+      "id": "OTHER",
+      "label": "其他／需專業分類",
+      "codes": [
+        "OTHER",
+        "其他"
+      ],
+      "priority": 0
+    }
+  ],
+  "comparison": {
+    "default": "review",
+    "matrix": {
+      "NILM": {
+        "BENIGN": "concordant",
+        "CIN2": "discordant",
+        "CIN3": "discordant",
+        "AIS": "discordant",
+        "SCC": "discordant",
+        "ADENO": "discordant"
+      },
+      "LSIL": {
+        "CIN1": "concordant"
+      },
+      "HSIL": {
+        "CIN2": "concordant",
+        "CIN3": "concordant",
+        "BENIGN": "discordant"
+      },
+      "AIS": {
+        "AIS": "concordant"
+      },
+      "SCC": {
+        "SCC": "concordant"
+      },
+      "ADENO": {
+        "ADENO": "concordant"
+      }
+    }
+  },
+  "metrics": [
+    {
+      "id": "abnormal",
+      "label": "抹片異常比例",
+      "numerator": {
+        "domain": "pas",
+        "filter": "abnormal",
+        "codes": []
+      },
+      "denominator": {
+        "domain": "pas",
+        "filter": "known",
+        "codes": []
+      },
+      "scale": "percent",
+      "alertAbove": null,
+      "description": "異常分類抹片數 ÷ 已分類抹片數；分類設定可調整。"
+    },
+    {
+      "id": "followup",
+      "label": "期滿異常個案切片配對率",
+      "numerator": {
+        "domain": "pas",
+        "filter": "matureAbnormalMatched",
+        "codes": []
+      },
+      "denominator": {
+        "domain": "pas",
+        "filter": "matureAbnormal",
+        "codes": []
+      },
+      "scale": "percent",
+      "alertAbove": null,
+      "description": "追蹤已期滿且有合格切片的異常抹片數 ÷ 追蹤已期滿的異常抹片數。"
+    },
+    {
+      "id": "ascsil",
+      "label": "ASC / SIL ratio",
+      "numerator": {
+        "domain": "pas",
+        "filter": "all",
+        "codes": [
+          "04",
+          "16",
+          "ASC-US",
+          "ASCUS",
+          "ASC-H",
+          "ASCH"
+        ]
+      },
+      "denominator": {
+        "domain": "pas",
+        "filter": "sil",
+        "codes": []
+      },
+      "scale": "ratio",
+      "alertAbove": null,
+      "description": "（ASC-US + ASC-H）÷（LSIL + HSIL）；為本範本定義，請依單位規範確認。"
+    },
+    {
+      "id": "unsatisfactory",
+      "label": "難以判讀比例",
+      "numerator": {
+        "domain": "pas",
+        "filter": "unsatisfactory",
+        "codes": []
+      },
+      "denominator": {
+        "domain": "pas",
+        "filter": "knownQuality",
+        "codes": []
+      },
+      "scale": "percent",
+      "alertAbove": null,
+      "description": "品質代碼 3 的抹片數 ÷ 品質代碼為 1、2、3 的抹片數；未填不當作良好。"
+    }
+  ]
+}
