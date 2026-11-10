@@ -53,6 +53,11 @@ function render(){
   $("#result-count").textContent=state.result?count(state.result.totals.pas):"";$("#result-count").hidden=!state.result;
   const pages={import:renderImport,results:renderResults,registry:renderRegistry,report:renderReport,rules:renderRules,history:renderHistory,help:renderHelp};
   $("#main").innerHTML=pages[state.view]();
+  if(["rules","help"].includes(state.view)&&!$("#embedded-rules")){
+    const section=document.createElement("section");section.className="notice no-print";section.setAttribute("aria-label","商業規則審核表下載");
+    section.innerHTML=`${icon("download",17)}<span><strong>商業規則審核表</strong>：<a href="./downloads/PAP-business-rules-review.xlsx" download>下載 Excel</a> · <a href="./downloads/PAP-business-rules-review.csv" download>下載 CSV</a><br>逐條閱讀目前做法、判定組合與例子，在「專業結論／建議修正」欄填寫。這份表記錄網站預設規則，填寫後請交給維護者更新。</span>`;
+    $("#main .page-heading").after(section);
+  }
   if(state.view==="help"&&!$("#embedded-rules")){
     const paragraph=document.createElement("p"),link=document.createElement("a");link.href="./offline.html";link.download="pap-qc-offline.html";link.textContent="下載可直接開啟的離線 HTML";paragraph.append(link);$("#main").append(paragraph);
   }

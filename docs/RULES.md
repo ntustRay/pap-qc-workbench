@@ -1,5 +1,11 @@
 # 專業規則維護
 
+## 先用表格審核
+
+[Excel 審核表](../dist/downloads/PAP-business-rules-review.xlsx) · [CSV 審核表](../dist/downloads/PAP-business-rules-review.csv) · [完整規則表格](BUSINESS_RULES.md)
+
+專業人員可先逐條閱讀條件、判定、分子／分母與合成案例，填寫「專業結論」及「建議修正」，不必操作規則表單或閱讀程式。這份表記錄網站發布的預設規則；填寫後不會自動套用。維護者確認建議後，再按下列流程更新、驗證及發布。規則版本改變時須同步更新審核表。
+
 ## 更新流程
 
 1. 開啟「專業規則」，使用五個頁籤維護資料。
